@@ -58,7 +58,13 @@ const Sidebar = ({
       <div className="flex-1 overflow-y-auto py-4">
         <nav className="px-2 space-y-1">
           {navItems.map(item => {
-          const isActive = pathname === item.path || pathname.startsWith(`${item.path}/`);
+          // Only highlight if pathname matches exactly, or for subroutes, only highlight the correct parent
+          let isActive = false;
+          if (item.path === '/dashboard') {
+            isActive = pathname === '/dashboard';
+          } else {
+            isActive = pathname === item.path || pathname.startsWith(`${item.path}/`);
+          }
           return <Link key={item.name} to={item.path} className={`flex items-center px-4 py-3 rounded-lg transition-all ${isActive ? `${theme === 'dark' ? 'bg-green-500/20 text-green-400 border-l-2 border-green-500 neon-border' : 'bg-green-50 text-green-700 border-l-2 border-green-500'}` : `${theme === 'dark' ? 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}`}>
                 <span className={isActive ? theme === 'dark' ? 'text-green-400' : 'text-green-600' : theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}>
                   {item.icon}
