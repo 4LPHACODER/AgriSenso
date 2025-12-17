@@ -1,0 +1,174 @@
+/* PLEASE NOTE: THESE TAILWIND IMPORTS SHOULD NEVER BE DELETED */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL */
+/* Theme variables */
+:root {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --accent-primary: #10b981;
+  --accent-secondary: #3b82f6;
+  --border-color: rgba(75, 85, 99, 0.5);
+  --card-bg: rgba(31, 41, 55, 0.4);
+  --card-bg-hover: rgba(31, 41, 55, 0.6);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+}
+/* Light theme */
+.light {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #f3f4f6;
+  --bg-tertiary: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --accent-primary: #10b981;
+  --accent-secondary: #3b82f6;
+  --border-color: rgba(209, 213, 219, 0.5);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-bg-hover: rgba(255, 255, 255, 0.9);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+}
+/* Theme classes */
+.app.dark {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+.app.light {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+/* Custom animations and utility classes */
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(74, 222, 128, 0.2), 0 0 20px rgba(74, 222, 128, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.4), 0 0 30px rgba(74, 222, 128, 0.4);
+  }
+}
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+/* Glassmorphism card styles */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.light .glass-card {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+/* Neon effect */
+.neon-text {
+  text-shadow: 0 0 5px rgba(74, 222, 128, 0.5), 0 0 10px rgba(74, 222, 128, 0.3);
+}
+.neon-border {
+  box-shadow: 0 0 5px rgba(74, 222, 128, 0.5), 0 0 10px rgba(74, 222, 128, 0.3);
+}
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+/* Fix for mobile browsers with bottom navigation bars */
+@supports (padding: max(0px)) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+/* Theme toggle button */
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: var(--bg-tertiary);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  transition: all 0.3s ease;
+}
+.light .theme-toggle::after {
+  transform: translateX(24px);
+}
